@@ -39,7 +39,7 @@ python -m http.server 8765 --bind 127.0.0.1   # then open http://127.0.0.1:8765/
 ```
 Check: all three filter buttons change the card count, no horizontal scroll at phone width, fonts load, and `performance.getEntriesByType('resource')` shows no cross-origin requests. Note: the lazy-loaded screenshot won't load in a background tab; force it with `img.loading='eager'` when testing.
 
-**External review:** for sign-off from people outside the local machine, publish a private claude.ai artifact review copy. Strip the `<!doctype>`/`<html>`/`<head>`/`<body>` wrappers, pass `assets/` through `files`, add a sticky "Draft for review, not the live site" banner, and outline every uncommitted change (check `git diff`) in yellow. The owner shares it from the artifact's Share menu. Review copy used for the Israel section: https://claude.ai/artifact/7SfUFDK8KWCDWeqWF8E8s4.
+**External review:** for sign-off from people outside the local machine, publish a private claude.ai artifact review copy. Strip the `<!doctype>`/`<html>`/`<head>`/`<body>` wrappers, pass `assets/` through `files`, add a sticky "Draft for review, not the live site" banner, and outline every uncommitted change (check `git diff`) in yellow. The owner shares it from the artifact's Share menu. Delete the review copy once the change is live.
 
 ## Hosting / deploy
 - **Host:** GitHub Pages, repo `JaguarsRevenge/NoToBrianBurnett` (public), branch `main`, path `/`. Deploy = `git push` to `main`; Pages rebuilds in about a minute.
