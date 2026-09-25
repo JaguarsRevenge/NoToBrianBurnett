@@ -18,18 +18,34 @@ Static one-page site, "NO to Brian Burnett", a sourced opposition-research page 
 - The disclosure ("Paid for by …") in the footer must stay.
 - Vote cards are `<article class="vote-card" data-result="no|support">`; the filter script counts them, so keep `data-result` on every card.
 - Image fixes: keep `width`/`height` attributes on `<img>` to avoid layout shift.
+- **Get approval before editing.** Show proposed copy (or a preview) and wait for an explicit go-ahead before touching `index.html`. Committing and pushing each need their own separate go-ahead.
+- Never commit the session-transcript `.txt` files that sit untracked in the repo root.
+
+## Israel trip section (`#israel-trip`)
+Added 2026-09-25 (commit `5231e97`). Full evidence, reasoning and caveats live outside the repo in `C:\Voting\Brian Burnett\burnett-israel-trip-findings.md` (§9 attendance, §10 the Christian-nationalism link). Rules specific to this section:
+- **Attendance** rests on the Israeli consulate's own Wingate Institute photograph with Rep. Hackney (a disclosed attendee) in the same frame. Say "appears in"; never "biometrically confirmed".
+- **The disclosure claim is an omission, not a violation.** Keep the "Evidence boundary" note: only the PDC can find a violation, and self-funding would make his F-1 accurate.
+- **Never attribute end-times or prophecy beliefs, or any Iran-war position, to Burnett.** The record doesn't support either. The prophecy card is framed as an open question and says so explicitly; keep it that way.
+- The Harari sentence credits Harari with the *warning* only. "When policy rests on divine promise, the human cost stops being the test" is the site's own view; don't rephrase it into a Harari quote.
+- Attending isn't the charge; Democrats Hackney and Leavitt went too. The charge is the missing disclosure plus the foreign-funding contradiction.
+- Don't embed the Wingate photo (Wingate Institute copyright); link to the consulate's post.
+- The Carlson/Trump "we all die anyway" account is unverified and not about Burnett. Keep it off the site.
 
 ## Test before publishing
 Serve locally and check in a browser:
 ```
-cd C:\Projects\NoToBrianBurnett
+cd "C:\Voting\Brian Burnett\site-today"
 python -m http.server 8765 --bind 127.0.0.1   # then open http://127.0.0.1:8765/
 ```
 Check: all three filter buttons change the card count, no horizontal scroll at phone width, fonts load, and `performance.getEntriesByType('resource')` shows no cross-origin requests. Note: the lazy-loaded screenshot won't load in a background tab; force it with `img.loading='eager'` when testing.
 
+**External review:** for sign-off from people outside the local machine, publish a private claude.ai artifact review copy. Strip the `<!doctype>`/`<html>`/`<head>`/`<body>` wrappers, pass `assets/` through `files`, add a sticky "Draft for review, not the live site" banner, and outline every uncommitted change (check `git diff`) in yellow. The owner shares it from the artifact's Share menu. Review copy used for the Israel section: https://claude.ai/artifact/7SfUFDK8KWCDWeqWF8E8s4.
+
 ## Hosting / deploy
 - **Host:** GitHub Pages, repo `JaguarsRevenge/NoToBrianBurnett` (public), branch `main`, path `/`. Deploy = `git push` to `main`; Pages rebuilds in about a minute.
 - **Domain:** `notobrianburnett.org`, registered at Squarespace Domains (DNS stays at Squarespace nameservers). Custom records: four A records on `@` -> `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`; CNAME `www` -> `jaguarsrevenge.github.io`. The "Squarespace Defaults" preset was deleted on purpose (it points at Squarespace servers and would break this). Do not re-add it. Manage at https://account.squarespace.com/domains/managed/notobrianburnett.org/dns/dns-settings (Squarespace requires a Google re-verification on sensitive changes; the user must do that step).
-- **HTTPS status (as of 2026-09-21):** DNS was correct and the site served over HTTP, but GitHub had not issued the Let's Encrypt certificate after about 20 minutes, so "Enforce HTTPS" was not yet enabled. To finish: try `gh api -X PUT repos/JaguarsRevenge/NoToBrianBurnett/pages -F https_enforced=true`; if it says "The certificate does not exist yet", wait and retry, or tick "Enforce HTTPS" at https://github.com/JaguarsRevenge/NoToBrianBurnett/settings/pages. If it stays stuck for many hours, remove and re-add the custom domain in those settings. Once enforced, update this line.
+- **HTTPS: working (verified 2026-09-25).** `https://notobrianburnett.org/` serves 200 with a valid certificate, and `http://` and `www.` both 301-redirect to it. `gh` is not installed on this machine.
 - The GitHub API commits to `CNAME` itself when the custom domain is changed, so `git pull --rebase` before pushing.
-- Commits use the trailer `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>` when Claude authors them.
+- **Commit identity:** the repo has no `user.name`/`user.email` configured. Set the identity per commit, don't write it to config: `git -c user.name="JaguarsRevenge" -c user.email="JaguarsRevenge@users.noreply.github.com" commit ...`. The owner chose the noreply address so their email stays off new commits. Earlier commits (before `5231e97`) carry a personal Gmail; leave history alone.
+- When Claude authors a commit, add a `Co-Authored-By:` trailer naming the model that actually did the work (e.g. `Claude Opus 5.5 <noreply@anthropic.com>`).
+- After a push, confirm the change is live: `curl -sL "https://notobrianburnett.org/?v=$RANDOM" | grep <new text>`. Pages usually rebuilds in under a minute.
