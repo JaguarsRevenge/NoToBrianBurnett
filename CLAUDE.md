@@ -15,7 +15,7 @@ Static one-page site, "NO to Brian Burnett", a sourced opposition-research page 
 - **Keep it static.** No forms, donation flows, or logins: GitHub Pages disallows commercial/e-commerce use and sensitive transactions.
 - **Accuracy matters.** GitHub's acceptable-use policy prohibits libelous/defamatory or intentionally false content about matters of public interest. Every factual claim needs a source link in the same block; keep the existing caveat language (settlements don't establish liability; "adjacency" is not membership). If a figure changes, update the total in the costs section too: currently `$3,585,159.45` = $506,500 + $448,659.45 + $455,000 + $1,500,000 + $425,000 + $250,000. It appears in `.costs-lede` ("more than $3.58 million"), `.costs-total` (`$3.58M+` and its `aria-label`), and `.cost-caveat`.
 - Update the "Last review" date in the footer when content is re-verified.
-- The disclosure ("Sponsored by …", changed from "Paid for by" at the owner's direction 2026-09-26) in the footer must stay.
+- The disclosure ("Sponsored by …", changed from "Paid for by" at the owner's direction 2026-09-26) in the footer must stay. The owner checked the rules the same day: "Sponsored by" and "Paid for by" are both acceptable. Settled; don't re-raise.
 - The yellow `.also` strip above the top bar links the sister site, https://notomikesteele.org/ (Mike Steele, Pos. 2). Keep it; the Steele site links back the same way.
 - Vote cards are `<article class="vote-card" data-result="no|support">`; the filter script counts them, so keep `data-result` on every card.
 - Image fixes: keep `width`/`height` attributes on `<img>` to avoid layout shift.
