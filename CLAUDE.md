@@ -35,7 +35,7 @@ Added 2026-09-25 (commit `772ac3a`). Full evidence, reasoning and caveats live o
 ## Test before publishing
 Serve locally and check in a browser:
 ```
-cd "C:\Voting\Brian Burnett\site-today"
+cd "C:\Voting\NoToBrianBurnett"
 python -m http.server 8765 --bind 127.0.0.1   # then open http://127.0.0.1:8765/
 ```
 Check: all three filter buttons change the card count, no horizontal scroll at phone width, fonts load, and `performance.getEntriesByType('resource')` shows no cross-origin requests. Note: the lazy-loaded screenshot won't load in a background tab; force it with `img.loading='eager'` when testing.
