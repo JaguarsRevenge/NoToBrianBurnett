@@ -1038,6 +1038,12 @@
     }
     .also a { color: var(--red-dark); font-weight: 700; text-decoration: none; white-space: nowrap; }
     .also a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .also { padding-inline: 0; }
+    .also-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2px 18px; width: min(calc(100% - 44px), var(--max)); margin: 0 auto; text-align: left; }
+    .also-links { display: flex; flex-wrap: wrap; gap: 2px 12px; }
+    .also .also-guide { margin-left: auto; }
+    @media (max-width: 700px) { .also-in { justify-content: center; text-align: center; } .also-links { justify-content: center; } .also .also-guide { margin-left: 0; } }
+    @media (max-width: 520px) { .also-in { width: min(calc(100% - 28px), var(--max)); } }
     .brand span { color: var(--yellow); }
     .nav { gap: 23px; }
     .nav a:hover { color: var(--yellow); }
@@ -1381,7 +1387,7 @@
   </style>
 </head>
 <body>
-  <aside class="also"><span>Also on the Nov 3 ballot</span><a href="https://notomikesteele.org/">No to Mike Steele · House Pos. 2 &rarr;</a><a href="https://notoshonsmith.org/">No to Shon Smith · Chelan County Commissioner &rarr;</a></aside>
+  <aside class="also"><div class="also-in"><div class="also-links"><span>Also on the Nov 3 ballot</span><a href="https://notomikesteele.org/">No to Mike Steele · House Pos. 2 &rarr;</a><a href="https://notoshonsmith.org/">No to Shon Smith · Chelan County Commissioner &rarr;</a></div><a class="also-guide" href="https://confluenceindivisible.org/cheatsheets/index.html#chelan-douglas">Confluence Indivisible Voter Guidance &rarr;</a></div></aside>
   <header class="topbar">
     <div class="container">
       <div class="brand"><span>Public record</span> / District 12</div>
